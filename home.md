@@ -1,8 +1,5 @@
 ---
-layout: home
-title: home
-permalink: /
-description: "SHREC 2021 Track: 3D Point Cloud Change Detection for Street Scenes"
+title:  "SHREC 2021 Track: 3D Point Cloud Change Detection for Street Scenes"
 
 # profile:
 #   align: right
