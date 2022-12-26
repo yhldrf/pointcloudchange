@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title> Point Cloud Change Detection for Street Scenes</title>
+  <meta name="description" content="Website of a SHREC 2023challenge: Point Cloud Change Detection">
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <section class="content" style="margin-top:5rem; margin-bottom:5rem;">
+      <div class="row">
+       
+          <h1 class="title"> <center>Point Cloud Change Detection for City Scenes </center></h1>
+          <h3><a href="http://www.shrec.net/"><center>SHREC 2023 Track</a> </center></h3>
+            
+        
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <h5>Motivation and Task</h5>
+          <p>The rapid development of 3D acquisition devices enables us to collect billions of points in few hours. However, the analysis of the output data is a challenging task, especially in the field of  point cloud change detection.</p> 
+		  <p>In this track, we provide large scale real and synthetic  point cloud pairs. Our goal is to detect the changes from multi-temporal point clouds in a complex street environment. We provide manually labelled ground-truth for training and validation. We expect to encourage researchers to try out different methods, including both deep learning and traditional techniques.</p>
+
+          <h5>Dataset</h5>
+          <p>The dataset includes real and synthesized point clouds and it consists of annotated "points of interest" in street level colored point clouds. The real data is provided by CycloMedia and it is gathered in 2016 and 2020 in the city of Schiedam, Netherlands using vehicle mounted LiDAR sensors. The synthesized data is generated with the help of Unreal Engine 4.  The dataset focus on street furniture, with the majority of labels corresponding to road-signs, people and cars, while other objects such as advertisements, statues and garbage bins are also included. Labeling was done through manual inspection.</p>
+          <p>For the real data, we choose over 78 annotated street-scene 3D point cloud pairs in the year of 2016 and 2020. For the synthetic data, we choose over 100 point cloud pairs. Each point cloud pair represents a street scene in  different time and contains a group of changed or unchanged objects. Each object pair is assigned one of the following labels: </p>
+          <p>(1) Nochange, (2) Removed, (3) Added, (4) Change, (5) Color_change </p>
+		  <p>To explain the labels:</p>
+
+          <p> <B>Nochange</B> refers to the case where there is no significant change between the two scans.</p>
+
+          <p><B>Added </B>refers to objects that do not exist in the first scan but are added during the second scan <B>Removed</B> is the opposite case.</p>
+
+          <p><B>Change </B>refers to the case where there is at least significant geometric change but also includes cases where there is also significant change in the RGB space. This includes being replaced by other objects. For example in the following picture a small blue sign is added whilst the rest of the sign stays the same.</p>
+          <img src="assets/pic01.png" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+		  
+		  
+          <p><B>Color_change</B> refers to the case where there is not significant geometric case but significant change in the RGB space. For example, in the following picture, content of an advertisement changed but the rest of the cloud is the same.</p>
+
+          <img src="assets/pic02.png" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+          <h5>Labeling Format</h5>
+		  <p>Each data point consists of the coordinate of a point of interest and the corresponding label.The points have been placed on or at the base of the object. A first step for preparing the points for input to a model may be taking all points within a certain x-y radius of the point of interest (resulting cylinders as seen above) from both point clouds. In most cases, apart from the ground this will give a fairly clean representation of the object. There are though cases where this will include other objects (for example signs that are close together) or parts of trees that are above the object.</p>
+		  <p>Corresponding point clouds are saved with file names starting with the same integer (the scene number). The classifications are saved in csv files which also start with the same scene number. The coordinates contained in the csv file correspond to the points of interest.</p>
+          <p>To fit for a learning system, the dataset is split into training and test sets with the ratio 80% and 20%.</p>
+		  <h5>Viewing the dataset</h5>
+		  <p>The points and corresponding labels can be viewed in context by loading the classification csv and the corresponding cloud(s) in <a class="button button-primary am-btn-sm" href="https://www.danielgm.net/cc/" target="_blank">CloudCompare</a> software.</p>
+		  <p>The following <image src="assets/mark-github-512.webp" height="18"/> <a class="button button-primary am-btn-sm" href="https://github.com/SamGalanakis/ChangeDetectionDatasetViewer" target="_blank">tool</a>  can be used to isolate, view these points of interest in a more convenient manner. A very similar tool was used to conduct the labeling. </p>
+
+          <img src="assets/img_a.png" style="display: block; margin-left: auto; margin-right: auto; width: 80%;"> 
+
+		  <h5>Download</h5>
+		  
+		  <p>During the challenge period, only the train set is provided to the participants. <a class="button button-primary u-full-width" href="https://drive.google.com/open?id=1hqU_aUEMv4dQD7hehjm3BYU0CehsiFe5" target="_blank">Download the datasets</a> <p>
+		 </div>
+		<div class="six columns"> 
+		  <h5>Registration</h5>
+		  <p> To participate in the track, please send us an email. In it, please confirm your interest in participation and mention your affiliation and possible co-authors. After filling out and submitting this <img src="assets/word_icon.jpeg" height="18"> <a class="button button-primary u-full-width" href="https://docs.google.com/document/d/1TlAUcIXLOwbaxFiDjSAbbWGZpwa3u3-H/edit?usp=share_link&ouid=107817637872915644212&rtpof=true&sd=true" target="_blank">terms of usage document</a> to <a href="mailto:shrec@cs.uu.nl" target="_blank">shrec@cs.uu.nl</a> and  <a href="mailto:hlyuan@nuist" target="_blank">hlyuan@nuist</a>, you will get the credentials to download the dataset. </p>
+		  
+		  <a class="button button-primary u-full-width" href="https://nuistedu-my.sharepoint.cn/:f:/g/personal/003446_nuist_edu_cn/EuPaswlSwNJGpigDA_gDsPcBOJIpjwnkZFw79CbY3VkL3Q?e=xOsKtm" target="_blank">Download the datasets</a>
+          
+          
+		  
+		  
+	
+		  
+          <h5>Submission</h5>
+          <p>From participants, no later than the deadline mentioned in the schedule, we expect an executable program submitted along with a file (a TEX file is preferred) to  describe
+		  the  method (less than two pdf pages). The program will be used to generate results on the private test sets.</p>
+
+          <h5>Evaluation</h5>
+          <p>The main goal of the track is to find change area and corresponding change labels. Global accuracy and per-class accuracy will be the main evaluation metrics.</p>
+
+    
+          
+         
+       
+        
+          <h5>Organizers</h5>
+          <p>
+            <ul>
+              <li>Honglin Yuan <sup>1,2</sup></li>
+			  <li>Tao Ku <sup>2</sup></li>
+			  <li>Sam Galanakis <sup>2</sup></li>
+			  <li>Bas Boom <sup>3</sup></li>
+              <li>Remco C. Veltkamp <sup>2</sup></li>
+            </ul>
+
+            1: Nanjing University of Information Science  and  Technology, School of Computer Science<br/>
+			2: Utrecht University, Department of Information and Computing Sciences<br/>
+			3: Cyclomedia Technology<br/>
+            <br/>
+
+            To contact the organizers, please send email to <a class="button button-primary" href="mailto:hlyuan@nuist.edu.cn?subject=SHREC 2023: Question" target="_blank"> us</a>
+          </p>
+
+          <h5>Schedule</h5>
+          <p>The registration and submission deadlines are in AoE (Anywhere on Earth) timezone.</p>
+          <table class="u-full-width">
+            <ul>
+              <li>Jan 8, 2023: The dataset is available.</li>
+              <li>Feb 10, 2023: Registration deadline.</li>
+              <li><font color="red"> March 1, 2023: Submission deadline of the results.</font></li>
+			  <li><font color="red"> March 15, 2023: Track submission to SHREC for review.</font></li>
+              <li>April 20, 2023: First reviews done, first stage decision on acceptance or rejection.</li>
+              <li>May 20, 2023: First revision due.</li>
+              <li>June 16, 2020: Second stage decision on acceptance or rejection.</li>
+              <li>June 30, 2023: Final version submission.</li>
+              <li>July 5, 2023: Final decision on acceptance or rejection.</li>
+              <li>August 31,  2023: Publication online in Computers &amp; Graphics.</li>
+              <li>August 31, Sept 1, 20203: Presentation at the Eurographics Symposium on 3D Object Retrieval.</li>
+            </ul>
+          </table>
+        
+        
+		<img src="assets/logo_cyclomedia.jpg" width="150">
+        <p>CycloMedia develops, builds and operates the worlds most advanced mobile mapping systems. With a combination of sensors ranging from cameras and Lidar scanners to state-of-the-art positioning systems we map dense urban areas in Western Europe and North America. Point clouds and images are accurately geo-registered, where the panoramic imagery is of high geometric quality.</p>
+        <p>The petabytes of data (all processed and stored in the Microsoft Azure cloud) that we collect every year are used by “professional users”, ranging from city governments to large corporates working in utilities, infrastructure and insurance. Their one common denominator is their need for better data and information to drive change in how they can serve their inhabitants and customers. Today our solutions make cities more safe, green, accessible and smart and help companies to make the right decisions based on fresh and accurate data. CycloMedia is based in The Netherlands and has offices in the US and Germany.</p>
+	</div>
+	</div>
+
+
+
+    </section>
+
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
