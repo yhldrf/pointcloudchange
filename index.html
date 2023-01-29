@@ -54,12 +54,12 @@
           <p><B>Added </B>refers to objects that do not exist in the first scan but are added during the second scan <B>Removed</B> is the opposite case. For example, in the synthetic dataset, an object exist in the time_a subset while it is removed in the time_b subset, it will be marked as removed in the point cloud in the time_b subset. </p>
 
           <p><B>Change </B>refers to the case where there is at least significant geometric change but also includes cases where there is also significant change in the RGB space. This includes being replaced by other objects. For example in the following picture a small blue sign is added whilst the rest of the sign stays the same.</p>
-          <img src="assets/pic01.png" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+          <img src="assets/change.png" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 		  
 		  
           <p><B>Color_change</B> refers to the case where there is not significant geometric case but significant change in the RGB space. For example, in the following picture, content of an advertisement changed but the rest of the cloud is the same.</p>
 
-          <img src="assets/pic02.png" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+          <img src="assets/color.png" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
           <h5>Labeling Format</h5>
 		  <p>Each data point consists of the coordinate of a point of interest and the corresponding label.The points have been placed on or at the base of the object. A first step for preparing the points for input to a model may be taking all points within a certain x-y radius of the point of interest (resulting cylinders (lidar data) as seen above) or within cuboids (synthetic data) from both point clouds. In most cases, apart from the ground this will give a fairly clean representation of the object. There are though cases where this will include other objects (for example signs that are close together) or parts of trees that are above the object.</p>
 		  <p>Corresponding point clouds are saved with file names starting with the same integer (the scene number). The classifications are saved in csv files which also start with the same scene number. The coordinates contained in the csv file correspond to the points of interest.</p>
